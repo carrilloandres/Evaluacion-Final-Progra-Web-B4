@@ -1,0 +1,12 @@
+<!-- Esta es mi página principal que hereda de base.html -->
+{% extends "base.html" %}
+
+{% block titulo %}Menú Principal{% endblock %}
+
+{% block contenido %}
+<!-- Aquí armé el menú inicial con los dos botones cuadrados usando los colores que pide el examen -->
+<div class="menu-principal">
+    <a class="boton-cuadrado boton-ejercicio1" href="{{ url_for('ejercicio1') }}">Ejercicio 1</a>
+    <a class="boton-cuadrado boton-ejercicio2" href="{{ url_for('ejercicio2') }}">Ejercicio 2</a>
+</div>
+{% endblock %}

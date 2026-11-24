@@ -1,0 +1,43 @@
+<!-- Esta es la página del Ejercicio 2: Inicio de sesión -->
+{% extends "base.html" %}
+
+{% block titulo %}Ejercicio 2 - Inicio de sesión{% endblock %}
+
+{% block contenido %}
+<div class="tarjeta">
+    <h1>Inicio de sesión</h1>
+
+    <!-- Si faltan datos o hay espacios/caracteres no permitidos, muestro aquí los errores -->
+    {% if errores %}
+    <div class="alerta-error">
+        <ul>
+            {% for error in errores %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Formulario para ingresar usuario y contraseña -->
+    <form method="POST" action="{{ url_for('ejercicio2') }}" novalidate autocomplete="off">
+        <label for="usuario">Ingresa tu nombre</label>
+        <input type="text" id="usuario" name="usuario" value="{{ datos.usuario }}" maxlength="50" required>
+
+        <label for="contrasena">Ingresa tu contraseña</label>
+        <input type="password" id="contrasena" name="contrasena" maxlength="50" required>
+
+        <div class="acciones">
+            <button type="submit" class="boton-enviar">Verificar</button>
+        </div>
+    </form>
+
+    <!-- Aquí muestro si el inicio de sesión fue exitoso o si las credenciales son incorrectas -->
+    {% if mensaje %}
+    <div class="resultado {% if acceso_correcto %}mensaje-ok{% else %}mensaje-error{% endif %}">
+        <p>{{ mensaje }}</p>
+    </div>
+    {% endif %}
+
+    <a class="volver" href="{{ url_for('index') }}">Volver al menú</a>
+</div>
+{% endblock %}

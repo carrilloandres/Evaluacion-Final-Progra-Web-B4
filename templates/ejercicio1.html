@@ -1,0 +1,53 @@
+<!-- Esta es la página del Ejercicio 1: Cálculo de compras -->
+{% extends "base.html" %}
+
+{% block titulo %}Ejercicio 1 - Cálculo de compras{% endblock %}
+
+{% block contenido %}
+<div class="tarjeta">
+    <h1>Calculo de compras</h1>
+
+    <!-- Si alguna validación falló en Python, muestro aquí los errores -->
+    {% if errores %}
+    <div class="alerta-error">
+        <ul>
+            {% for error in errores %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Uso novalidate para que siempre se muestren mis validaciones personalizadas en español -->
+    <form method="POST" action="{{ url_for('ejercicio1') }}" novalidate autocomplete="off">
+        <label for="nombre">Ingresa tu nombre</label>
+        <input type="text" id="nombre" name="nombre" value="{{ datos.nombre }}" maxlength="50" required>
+
+        <label for="edad">Ingresa tu edad</label>
+        <input type="text" id="edad" name="edad" value="{{ datos.edad }}" maxlength="3" required>
+
+        <label for="cantidad">Ingresa la cantidad de tarros de pintura a comprar</label>
+        <input type="text" id="cantidad" name="cantidad" value="{{ datos.cantidad }}" maxlength="5" required>
+
+        <div class="acciones">
+            <button type="submit" class="boton-enviar">Calcular</button>
+        </div>
+    </form>
+
+    <!-- Si todo se validó bien y ya calculé la compra, muestro los resultados -->
+    {% if resultado %}
+    <div class="resultado">
+        <p>Nombre del cliente: {{ resultado.nombre }}</p>
+        <p>Total sin descuento: ${{ resultado.total_sin_descuento }}</p>
+        {% if resultado.porcentaje > 0 %}
+        <p>El descuento es : ${{ resultado.descuento }} ({{ resultado.porcentaje }}%)</p>
+        {% else %}
+        <p>El descuento es : $0 (Sin descuento para menores de 18 años)</p>
+        {% endif %}
+        <p>El total a pagar es de : ${{ resultado.total_pagar }}</p>
+    </div>
+    {% endif %}
+
+    <a class="volver" href="{{ url_for('index') }}">Volver al menú</a>
+</div>
+{% endblock %}

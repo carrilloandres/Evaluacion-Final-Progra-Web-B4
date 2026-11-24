@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- En esta página base creé un bloque para que cada pantalla ponga su propio título -->
+    <title>{% block titulo %}Examen Final - Flask{% endblock %}</title>
+    <!-- Aquí cargué mi hoja de estilos CSS desde la carpeta static -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="contenedor">
+        <!-- En este bloque cada página HTML inserta su contenido -->
+        {% block contenido %}{% endblock %}
+    </main>
+</body>
+</html>

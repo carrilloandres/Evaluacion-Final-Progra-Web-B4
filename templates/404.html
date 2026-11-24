@@ -1,0 +1,14 @@
+<!-- Esta página la muestro si alguien escribe una dirección que no existe -->
+{% extends "base.html" %}
+
+{% block titulo %}Página no encontrada{% endblock %}
+
+{% block contenido %}
+<div class="tarjeta">
+    <h1>Error 404</h1>
+    <p>La página que buscas no existe.</p>
+    <div class="acciones">
+        <a class="boton-enviar" href="{{ url_for('index') }}">Volver al menú</a>
+    </div>
+</div>
+{% endblock %}
